@@ -1,5 +1,7 @@
 # Connect4AI
-A monte carlo AI for Connect4 written in Python. This project was tested in Python 3.8 and should work with any Python 3 install.
+A [Monte Carlo](https://en.wikipedia.org/wiki/Monte_Carlo_method) AI for [Connect4](https://en.wikipedia.org/wiki/Connect_Four) written in [Python](https://python.org). 
+
+This project was tested in Python 3.8 and should work with any Python 3 install.
 
 # Usage:
   ```python Connect4.py``` runs simulated game
@@ -11,7 +13,7 @@ A monte carlo AI for Connect4 written in Python. This project was tested in Pyth
 
   ``` --norush ``` will let the AI take its time, hey we aren't in a rush here!
   
-  ``` --pretty ``` will allow you yo live in the world of color TV.
+  ``` --pretty ``` will allow you to live in the world of color TV. Makes use of [Colorama](https://pypi.org/project/colorama/)
   
   ``` --clearable  ``` makes the console clear itself when the board redraws.
 
