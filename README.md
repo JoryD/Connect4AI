@@ -1,5 +1,5 @@
 # Connect4AI
-A monte carlo AI for Connect4 written in Python.
+A monte carlo AI for Connect4 written in Python. This project was tested in Python 3.8 and should work with any Python 3 install.
 
 # Usage:
   ```python Connect4.py``` runs simulated game
@@ -16,7 +16,7 @@ A monte carlo AI for Connect4 written in Python.
   ``` --clearable  ``` makes the console clear itself when the board redraws.
 
 # Things to Tweak
-BOARD_WIDTH, BOARD_HEIGHT, and AI_STRENGTH can all be easily changed, just put in any non-zero positve integer.
+```BOARD_WIDTH```, ```BOARD_HEIGHT```, and ```AI_STRENGTH``` can all be easily changed, just put in any non-zero positve integer.
 
 ``` BOARD_WIDTH ``` is the width of the game board.
 
