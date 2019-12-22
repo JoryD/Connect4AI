@@ -18,7 +18,8 @@ This project was tested in Python 3.8 and should work with any Python 3 install.
   ``` --pretty ``` will allow you to live in the world of color TV. Makes use of [Colorama](https://pypi.org/project/colorama/)
   
   ``` --clearable  ``` makes the console clear itself when the board redraws.
-  ``` --first``` and ```--second``` lets you choose if you go first or not.
+  
+  ``` --first``` and ```--second``` lets you choose if you go first or not in singleplayer mode. This defaults to first.
   
   ``` --easy ```,``` --medium ```,``` --hard ```,``` --insane ```,``` --master ```,``` --demigod ```, ```--god``` are difficulty options, see if you can beat them all! However after insane the computer takes forever to move depending on your CPU single threaded performance.
 
