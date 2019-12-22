@@ -4,7 +4,7 @@ A [Monte Carlo](https://en.wikipedia.org/wiki/Monte_Carlo_method) AI for [Connec
 This project was tested in Python 3.8 and should work with any Python 3 install.
 
 # Usage:
-  ```python Connect4.py``` runs simulated game
+  ```python Connect4.py``` will run a simulated game AI vs AI.
   
 # Options:
  ``` --singleplayer ``` lets you play against the AI.
@@ -18,6 +18,7 @@ This project was tested in Python 3.8 and should work with any Python 3 install.
   ``` --pretty ``` will allow you to live in the world of color TV. Makes use of [Colorama](https://pypi.org/project/colorama/)
   
   ``` --clearable  ``` makes the console clear itself when the board redraws.
+  ``` --first``` and ```--second``` lets you choose if you go first or not.
   
   ``` --easy ```,``` --medium ```,``` --hard ```,``` --insane ```,``` --master ```,``` --demigod ```, ```--god``` are difficulty options, see if you can beat them all! However after insane the computer takes forever to move depending on your CPU single threaded performance.
 
