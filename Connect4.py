@@ -193,17 +193,27 @@ def sim():
         Drop(board, SuggestMove(board, CIRCLE_YELLOW, AI_STRENGTH), CIRCLE_YELLOW)
 
         
-def singlePlayer():
+def singlePlayer(whoStarts=1):
     board = deepcopy(emptyBoard)
-    while(1):
-        printGameBoard(board)
-        if showPotentialWinner(board):  return
-        Drop(board, getMoveFromPlayer(board), CIRCLE_RED)
-        printGameBoard(board)
-        print(board)
-        if showPotentialWinner(board):  return
-        computer_move = SuggestMove(board, CIRCLE_YELLOW, AI_STRENGTH)
-        Drop(board, computer_move, CIRCLE_YELLOW)
+
+    if whoStarts == 1:
+        while(1):
+            printGameBoard(board)
+            if showPotentialWinner(board):  return
+            Drop(board, getMoveFromPlayer(board), CIRCLE_RED)
+            printGameBoard(board)
+            if showPotentialWinner(board):  return
+            computer_move = SuggestMove(board, CIRCLE_YELLOW, AI_STRENGTH)
+            Drop(board, computer_move, CIRCLE_YELLOW)
+    elif whoStarts == 2:
+        while(1):
+            printGameBoard(board)
+            if showPotentialWinner(board):  return
+            Drop(board, SuggestMove(board, CIRCLE_YELLOW, AI_STRENGTH), CIRCLE_YELLOW)        
+            printGameBoard(board)
+            if showPotentialWinner(board):  return
+            Drop(board, getMoveFromPlayer(board, CIRCLE_RED), CIRCLE_RED)
+
 
 
 def showPotentialWinner(board):
@@ -296,7 +306,10 @@ if __name__== "__main__":
         import os
         CLEARABLE = 1
     if "--singleplayer" in sys.argv:
-        singlePlayer()
+        if "--second" in sys.argv:
+            singlePlayer(2)
+        else:
+            singlePlayer(1)
     elif "--multiplayer" in sys.argv:
         twoPlayer()
     else:
