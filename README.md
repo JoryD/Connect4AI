@@ -34,6 +34,8 @@ This project was tested in Python 3.8 and should work with any Python 3 install.
 
 # Potential Improvements
 Multithreading/Multiprocessing - run all 7 possible move simulations in parallel. Might not make sense considering the GIL.
-  
+
+Numpy - find a way to speed up calculations using numpy, or by using things other than expensive python objects.
+
 # Inspiration
 Inspired by https://github.com/antirez/connect4-montecarlo. Antirez did a great job writing his version in C. C is nice, however Python is the language of the gods.
