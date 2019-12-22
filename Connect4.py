@@ -1,10 +1,11 @@
 import sys
-from random import randint, shuffle
+import time
 from copy import deepcopy
+from random import randint, shuffle
 
 BOARD_WIDTH = 7
 BOARD_HEIGHT = 6
-AI_STRENGTH = 500
+AI_STRENGTH = 200
 cellOptions = [" ", "Y", "R"]; # empty, Yellow symbol, Red symbol
 
 CIRCLE_INVALID = -1
@@ -19,6 +20,7 @@ RUSH = True
 emptyBoard = [[0 for x in range(BOARD_WIDTH)] for y in range(BOARD_HEIGHT)]
 BX = BOARD_WIDTH - 1
 BY = BOARD_HEIGHT - 1
+ttmList = []
 BANNER = '''    _/_/_/                                                      _/      _/  _/   
   _/          _/_/    _/_/_/    _/_/_/      _/_/      _/_/_/  _/_/_/_/  _/  _/    
  _/        _/    _/  _/    _/  _/    _/  _/_/_/_/  _/          _/      _/_/_/_/   
@@ -54,30 +56,31 @@ def Drop(b, col, value):
     
     
 def printGameBoard(b):
+    export = ""
     if CLEARABLE:
         os.system('cls||echo -e \\\\033c')
     if COLORAMA:
-        print(colorama.Fore.YELLOW + SMALL_BANNER + colorama.Style.RESET_ALL)
+        export = export + colorama.Fore.YELLOW + SMALL_BANNER + colorama.Style.RESET_ALL + "\n"
     else:
-        print(SMALL_BANNER)
+        export = export + SMALL_BANNER + "\n"
     for level in range(BY, -1, -1):
-        print(level, end='')
+        export = export + str(level)
         for col in range(0, BOARD_WIDTH):
             color = Get(b, level, col)
             if COLORAMA:
                 if color == CIRCLE_YELLOW:
-                    print(colorama.Fore.YELLOW+"[Y]"+colorama.Style.RESET_ALL, end="")
+                    export = export + colorama.Fore.YELLOW+"[Y]"+colorama.Style.RESET_ALL
                 elif color == CIRCLE_RED:
-                    print(colorama.Fore.RED+"[R]"+colorama.Style.RESET_ALL, end="")
+                    export = export + colorama.Fore.RED+"[R]"+colorama.Style.RESET_ALL
                 else:
-                    print("[ ]", end="")
+                    export = export + "[ ]"
             else:
-                print("[" + str(cellOptions[color]) + "]", end="")
-        print()
-    print(" ", end = "")
+                export = export + "[" + str(cellOptions[color]) + "]"
+        export = export + "\n"
+    export = export + " "
     for col in range(0, BOARD_WIDTH):
-        print(" " + str(col) + " ", end="")
-    print()
+        export = export + " " + str(col) + " "
+    print(export)
 
 
 def GetWinner(b):
@@ -111,7 +114,7 @@ def GetWinner(b):
 
 
 def RandomGame(b, tomove):
-    for i in range(0,42):
+    for i in range(0, BOARD_HEIGHT * BOARD_WIDTH):
         potentialMoves = [x for x in range(0,BOARD_WIDTH)]
         shuffle(potentialMoves)
         for move in potentialMoves:
@@ -138,6 +141,7 @@ def SuggestMove(b, tomove, simulations=AI_STRENGTH):
         elif tomove == CIRCLE_RED:
             print(colorama.Fore.RED + "RED IS THINKING" + colorama.Style.RESET_ALL)
     for move in range(0,BX+1):
+        ttm = time.time()
         if (ColIsFull(b,move)):
             continue
         won = 0
@@ -177,7 +181,8 @@ def SuggestMove(b, tomove, simulations=AI_STRENGTH):
                 print_neutral = 0
         if COLORAMA and print_neutral == 1:
             print(colorama.Fore.YELLOW + "?" + colorama.Style.RESET_ALL, end = " ")
-        print("Move", move, ":", round(ratio*100,1), " draws: ", draw,);
+        ttmList.append(time.time() - ttm)
+        print("Move", move, ":", round(ratio*100,1), "draws:", draw, "ttm:", round(ttmList[-1],1), "attm:", round(sum(ttmList)/len(ttmList),1))
 
     return best
 
